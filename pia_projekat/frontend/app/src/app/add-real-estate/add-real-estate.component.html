@@ -1,0 +1,111 @@
+<app-menu></app-menu>
+<div class="backgroundPicture" fxLayoutAlign="center center" fxFlexFill>
+
+    <mat-card clas="cardDesign">
+        <mat-card-title class="centerSingleComponent">
+            Add new Real Estate
+        </mat-card-title>
+        <mat-card-content>
+            <hr>
+            <div>
+                <mat-form-field class="full-width">
+                    <mat-label>Title</mat-label>
+                    <textarea required matInput placeholder="Ex. penthouse in  “BW Terraces”"
+                        [(ngModel)]="title"></textarea>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="half-width">
+                    <mat-label>State</mat-label>
+                    <input matInput required [(ngModel)]="state">
+                </mat-form-field>
+                <div class="divider"></div>
+                <mat-form-field class="half-width">
+                    <mat-label>City</mat-label>
+                    <input matInput required [(ngModel)]="city">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="full-width">
+                    <mat-label>Street</mat-label>
+                    <input matInput required placeholder="Street and number" [(ngModel)]="street">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Real Estate type</mat-label>
+                    <select matNativeControl required [(ngModel)]="type">
+                        <option value="house">House</option>
+                        <option value="apartment">Apartment</option>
+                    </select>
+                </mat-form-field>
+                <div class="divider"></div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Is it equiped?</mat-label>
+                    <select matNativeControl required [(ngModel)]="equiped">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                    </select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="half-width">
+                    <mat-label>Quadrature</mat-label>
+                    <input matInput type="number" required placeholder="Number of square meters"
+                        [(ngModel)]="quadrature">
+                </mat-form-field>
+                <div class="divider"></div>
+                <mat-form-field class="half-width">
+                    <mat-label>Number of rooms</mat-label>
+                    <input matInput required type="number" placeholder="Ex. 5 or 5.5" [(ngModel)]="rooms">
+                </mat-form-field>
+            </div>
+            <div *ngIf="type=='house'">
+                <mat-form-field class="full-width">
+                    <mat-label>Number of floors</mat-label>
+                    <input matInput required type="number" [(ngModel)]="numberOfFloors">
+                </mat-form-field>
+            </div>
+            <div *ngIf="type=='apartment'">
+                <mat-form-field class="half-width">
+                    <mat-label>Number of floors</mat-label>
+                    <input matInput required type="number" [(ngModel)]="numberOfFloors">
+                </mat-form-field>
+                <div class="divider"></div>
+                <mat-form-field class="half-width">
+                    <mat-label>Floor of the apartment</mat-label>
+                    <input matInput required type="number" placeholder="0 for ground level" [(ngModel)]="onFloor">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Adverstement reason</mat-label>
+                    <select matNativeControl required [(ngModel)]="reason">
+                        <option value="sell">Selling</option>
+                        <option value="rent">Renting</option>
+                    </select>
+                </mat-form-field>
+                <div class="divider"></div>
+                <mat-form-field class="half-width">
+                    <mat-label>Price</mat-label>
+                    <input matInput required type="number" placeholder="Price in eur" [(ngModel)]="price">
+                </mat-form-field>
+            </div>
+            <div>
+                <input type="file" style="display: none" (change)="upload($event)" #fileInput multiple>
+                <button mat-raised-button (click)="fileInput.click()">Choose picture</button>
+
+            </div>
+            <br />
+            <div class="errMsg">
+                {{msg}}
+            </div>
+
+            <br />
+            <div>
+                <button mat-raised-button color="primary" (click)="addNew()">Add</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

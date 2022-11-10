@@ -1,0 +1,58 @@
+
+
+
+.center {
+  
+    width: 340px;
+    padding : 40px;
+    position : absolute;
+    top: 5%;
+    left : 50%;
+    transform:  translate(-50%,50%);
+    background-color: aliceblue;
+    
+ 
+  }
+  .centerSingleComponent{
+    display: flex;
+    justify-content: center;
+  }
+h1{
+  color:#3F51B5;
+  font-weight: bold;
+  font-style: italic;
+}
+h3{
+  
+    color:#3F51B5;
+    font-weight: bold;
+  
+}
+h5{
+  font-weight: bold;
+}
+.backgroundPicture{
+  background-image: url('../../assets/penthouseWalpaper3.jpg');
+  min-height: 100%;
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.right{
+  text-align: right;
+}
+.inline{
+  display: inline;
+}
+.error{
+  color:red;
+  
+}
+.cardDesign {
+  min-width: 20%;
+  margin-left:20px;
+  background-color: aliceblue;
+}
+
+ 

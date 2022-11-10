@@ -1,0 +1,44 @@
+<app-menu></app-menu>
+<div class="container" *ngIf='doneDeals && doneDeals.length>0'>
+    <div class="centerSingleComponent" *ngIf="profit">
+        <h1>Total revenue: {{profit.totalRevenue}}</h1>
+    </div>
+    <br/>
+    <br/>
+    <div *ngIf="doneDeals" fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+
+        <mat-card (click)="showRealEstate(realEstates[getIndex(i)])" fxLayout="column" fxFlex.md="0 1 calc(33% - 20px)"
+            fxFlex="0 1 calc(25% - 20px)" fxFlex.sm="0 1 calc(50% - 20px)" fxFlex.xs="100"
+            *ngFor="let conversation of conversationsOnPage; let i = index" class="product">
+
+
+
+            <div *ngIf='realEstates[getIndex(i)]'>
+                <img mat-card-image  *ngIf='isPicture(getPicture(realEstates[getIndex(i)]))' class="picture"  src='{{"http://localhost:4000/uploads/"+getPicture(realEstates[getIndex(i)])}}'>
+        
+                
+            </div>
+            <mat-card-title>{{conversation.title}}</mat-card-title>
+            <mat-card-content fxFlex *ngIf='realEstates[getIndex(i)]'>
+
+                buyer : {{conversation.buyer}}
+                <br />
+                selelr : {{conversation.seller}}
+                <br />
+                price : {{realEstates[getIndex(i)].price}}
+
+            </mat-card-content>
+            <mat-card-actions>
+               
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+    <div *ngIf="doneDeals">
+        <mat-paginator [length]="doneDeals.length" [pageSize]="2" (page)="pageEvent($event)">
+        </mat-paginator>
+    </div>
+</div>
+<div *ngIf='!doneDeals || doneDeals.length==0' class="centerSingleComponent">
+    <h1>There are no deals waiting for aproval</h1>
+</div>

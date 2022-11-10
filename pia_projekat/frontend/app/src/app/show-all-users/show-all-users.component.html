@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+<div class="container">
+    
+    <div *ngIf="users && users.length!=0" fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+            
+        <mat-card (click)="showUser(u)" fxLayout="column" fxFlex.md="0 1 calc(33% - 20px)" fxFlex="0 1 calc(25% - 20px)" fxFlex.sm="0 1 calc(50% - 20px)" fxFlex.xs="100" *ngFor="let u of usersOnPage" class="product" >
+            <img mat-card-image  class="picture"  src='{{"http://localhost:4000/uploads/"+u.picture}}'>
+            <mat-card-title>{{u.username}}</mat-card-title>
+            <mat-card-content fxFlex>
+                    
+                    <p>
+                        {{u.type}}
+                    </p>
+                   
+                </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div *ngIf="users">
+        <mat-paginator #paginator
+            [length]="users.length"
+            [pageSize]="8"
+            (page)="pageEvent($event)">
+        </mat-paginator>
+    </div>
+</div>

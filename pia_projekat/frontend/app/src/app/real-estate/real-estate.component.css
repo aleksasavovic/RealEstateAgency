@@ -1,0 +1,48 @@
+.example-card {
+    max-width: 400px;
+  }
+
+.btnLeft{
+  position:absolute;
+  top:25%;
+  left:1%;
+  transform: translate(-50%,50%);
+}
+.btnRight{
+  position:absolute;
+  top:25%;
+  left:99%;
+  transform: translate(-50%,50%);
+}
+.cardDesign {
+ 
+  margin-top: 10px;
+  }
+  .product{
+    min-width: 180px;
+    text-align: center;
+    margin-bottom: 20px; /* same as fxLayoutGap for even distribution */
+  }
+  
+  .product img{
+    height: 600px;
+    width:800px;
+    object-fit: contain;
+  }
+
+  .container{
+    padding: 16px;
+  }
+  .divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}
+.product video{
+  height: 600px;
+  width:800px;
+  object-fit: contain;
+}
+.err{
+  color:red;
+}

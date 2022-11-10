@@ -1,0 +1,24 @@
+#barChart{
+    display:block;
+    width: 80%;
+}
+#doughnutChart{
+    display:block;
+    width: 50%;
+    height:100%;
+}
+.container{
+    padding: 20px;
+  }
+  .centerSingleComponent{
+    display: flex;
+    justify-content: center;
+  }
+  .hColor{
+    color:#3F51B5;
+  }
+h1{
+  color:#3F51B5;
+  font-weight: bold;
+  font-style: italic;
+}

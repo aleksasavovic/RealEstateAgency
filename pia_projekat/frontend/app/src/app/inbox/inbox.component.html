@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+<div class="backgroundPicture" fxLayoutAlign="center center" fxFlexFill>
+    <section class="msger">
+        <header class="msger-header">
+            <div class="msger-header-title">
+                <i class="fas fa-comment-alt"></i> Inbox
+            </div>
+            <div class="msger-header-options">
+                <span><i class="fas fa-cog"></i></span>
+            </div>
+            <button mat-button (click)="activeMessages()">Active Messages</button>
+            <div class="devider"></div>
+            <button mat-button (click)="archivedMessages()">Archived Messages</button>
+        </header>
+
+        <main class="msger-chat">
+            <div *ngIf="conversations">
+                <div *ngFor="let conversation of conversations">
+                    <div class="msg left-msg">
+                        <div class="msg-bubble" (click)="privateConversation(conversation)" [class.notSeen]='isSeen(conversation)'>
+                            <div class="msg-info">
+
+                            </div>
+                            <div class="msg-text">
+                                {{conversation.title}}
+                            </div>
+                        </div>
+                        <div class="centerSingleComponent">
+                            <button mat-raised-button *ngIf="inboxType=='active'" (click)="archive(conversation)">Archive</button>
+                            <button mat-raised-button *ngIf="inboxType=='archived'" (click)="moveToActive(conversation)">Move to active</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+      
+    </section>
+</div>

@@ -1,0 +1,26 @@
+.full-width {
+    width: 100%;
+}
+.picture{
+    
+     object-fit:contain;
+  
+}
+.product{
+    cursor: pointer;
+    min-width: 180px;
+    text-align: center;
+    margin-bottom: 20px; /* same as fxLayoutGap for even distribution */
+}
+.container{
+  padding: 20px;
+}
+.product img{
+  height: 150px;
+  object-fit: contain;
+}
+.video{
+  height: 140px;
+  min-width: 180px;
+  object-fit: contain;
+}

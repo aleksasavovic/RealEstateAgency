@@ -1,0 +1,39 @@
+
+::ng-deep.mat-form-field-disabled .mat-form-field-underline 
+    { 
+    background-image: linear-gradient( to right, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.42) 33%, #c2c7cc 0 ) !important; 
+    background-size: 1px 100% !important;
+     background-repeat: repeat-x !important; 
+    }
+
+static-text.disabled{
+    color:black;
+}
+input:disabled {
+    color: black;
+  }
+  .cardDesign {
+    min-width: 20%;
+    
+    margin: 20px auto;
+    background-color: aliceblue;
+  }
+  .divider{
+    width:20px;
+    height:auto;
+    display:inline-block;
+}
+.inline{
+  display: inline-block;
+}
+img {
+  border-radius: 50%;
+  width: 400px;
+}
+.centerSingleComponent{
+  display: flex;
+  justify-content: center;
+}
+.err{
+  color:red;
+}

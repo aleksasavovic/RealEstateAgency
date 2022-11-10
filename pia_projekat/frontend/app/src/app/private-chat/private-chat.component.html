@@ -1,0 +1,81 @@
+<app-menu></app-menu>
+<div class="backgroundPicture" fxLayoutAlign="center center" fxFlexFill *ngIf='realEstate'>
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-comment-alt"></i> {{title}}
+      </div>
+      <div class="msger-header-options">
+        <span><i class="fas fa-cog"></i></span>
+        <button mat-raised-button color="primary" *ngIf='!isOwner && !newConversation && conversation && conversation.offerSent  && !realEstate.sold' disabled (click)='sendOffer() '>your offer is sent</button>
+        <button mat-raised-button color="primary" *ngIf='!isOwner && !newConversation &&  conversation && !conversation.offerSent && !blocked && !isBlocked  &&  !realEstate.sold' (click)='sendOffer()'>Send offer</button>
+        <button mat-raised-button color="primary" *ngIf='!isOwner && !newConversation && conversation && !conversation.offerSent && ( blocked || isBlocked)&&  !realEstate.sold '  disabled (click)='sendOffer()'>Send offer</button>
+        <button mat-raised-button color="primary" *ngIf='!isOwner &&  realEstate.sold '  disabled >Sold</button>
+        <button mat-raised-button color="primary"  *ngIf='isOwner && offerSent && !isBlocked && !blocked && conversation && !conversation.offerAccepted && !realEstate.sold' (click)='acceptOffer()'>Accept offer</button>
+        <button mat-raised-button color="primary"  *ngIf='isOwner && offerSent && (blocked || isBlocked) && conversation && !conversation.offerAccepted && !realEstate.sold' (click)='acceptOffer()' disabled>Accept offer</button>
+        <div class="divider"></div>
+        <button mat-raised-button color="primary"  *ngIf='isOwner && offerSent && !isBlocked && !blocked && conversation && !conversation.offerAccepted && !realEstate.sold' (click)='rejectOffer()'>Reject offer</button>
+        <button mat-raised-button color="primary"  *ngIf='isOwner && offerSent && (blocked || isBlocked) && conversation && !conversation.offerAccepted && !realEstate.sold' (click)='rejectOffer()' disabled>Reject offer</button>
+        <button mat-raised-button color="primary"  *ngIf="isOwner && offerSent && !blocked && !isBlocked && conversation && conversation.offerAccepted && !conversation.aprovedByAgent"  disabled>pending aproval</button>
+        <button mat-raised-button color="primary"  *ngIf="isOwner && offerSent && !blocked && !isBlocked && conversation && conversation.offerAccepted && conversation.aprovedByAgent"  disabled>done deal</button>
+        <button mat-raised-button color="primary"  *ngIf="isOwner  && conversation  && realEstate.sold && !conversation.aprovedByAgent && realEstate.sold"  disabled>sold</button>
+        <div class="divider"></div>
+        <button mat-raised-button color="primary" (click)='block()'  *ngIf='canBeBlocked && !blocked'>Block</button>
+        <button mat-raised-button color="primary" (click)='unblock()' *ngIf='canBeBlocked && blocked'>Unblock</button>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      <div *ngIf="conversation">
+        <div *ngFor="let message of conversation.messages">
+          <div *ngIf="!showRight(message)">
+            <div class="msg left-msg">
+
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name" *ngIf="conversation.buyer==user.username">Owner</div>
+                  <div class="msg-info-name" *ngIf="conversation.buyer!=user.username">{{conversation.buyer}}</div>
+                  <div class="msg-info-time">{{message.date}}</div>
+                </div>
+
+                <div class="msg-text">
+                 {{message.text}}
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="showRight(message)">
+            <div class="msg right-msg">
+
+
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">{{message.sender}}</div>
+                  <div class="msg-info-time">{{message.date}}</div>
+                </div>
+
+                <div class="msg-text">
+                  {{message.text}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <form *ngIf='!blocked && !isBlocked' class="msger-inputarea">
+      <input  type="text" class="msger-input" [(ngModel)]="msg" placeholder="Enter your message..." name="mess">
+      <div class="divider"></div>
+      <button mat-raised-button color="primary" (click)="sendMsg()">Send msg</button>
+
+    </form>
+    <form *ngIf='blocked || isBlocked' class="msger-inputarea">
+      <input disabled type="text" class="msger-input" [(ngModel)]="msg" [placeholder]='blockMsg' name="mess">
+      <div class="divider"></div>
+      <button disabled mat-raised-button color="primary" (click)="sendMsg()">Send msg</button>
+
+    </form>
+  </section>
+</div>

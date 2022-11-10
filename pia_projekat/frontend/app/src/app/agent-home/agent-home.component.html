@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class='centerSingleComponent hColor' *ngIf='user.type=="admin" && profit'>
+        <h1>Current agency fee: {{profit.agencyFee}}%</h1>
+        
+        
+    </div>
+    <div class='centerSingleComponent' *ngIf='user.type=="admin"'>
+        <mat-form-field>
+            <mat-label>New fee</mat-label>
+            <input matInput required [(ngModel)]="fee">
+          </mat-form-field>
+        <button mat-raised-button (click)='updateFee()'>UpdateFee</button> 
+    </div>
+
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <div id="doughnutChart">
+                <canvas id="numberOfRealEstatesChart"></canvas>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div id="barChart">
+                <canvas id="realEstatesForSalePriceChart"></canvas>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div id="barChart">
+                <canvas id="realEstatesForRentPriceChart"></canvas>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div id="barChart">
+                <canvas id="realEstatesPerCity"></canvas>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+
+</div>

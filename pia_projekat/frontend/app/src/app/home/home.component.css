@@ -1,0 +1,52 @@
+.row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 20px;
+  }
+  .full-width {
+    width: 100%;
+  }
+  .picture{
+    
+     object-fit:contain;
+  
+  }
+  .product{
+    cursor: pointer;
+    min-width: 180px;
+    text-align: center;
+    margin-bottom: 20px; /* same as fxLayoutGap for even distribution */
+  }
+  
+  .product img{
+    height: 150px;
+    object-fit: contain;
+  }
+  .centerSingleComponent{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .container{
+    padding: 20px;
+  }
+  .divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+.cursor{
+  cursor: pointer;
+}
+.err{
+  color:red;
+}
+h1{
+  color:#3F51B5;
+  font-weight: bold;
+  font-style: italic;
+}

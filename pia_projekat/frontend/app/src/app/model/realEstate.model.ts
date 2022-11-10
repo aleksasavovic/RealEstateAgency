@@ -1,0 +1,20 @@
+export class RealEstate{
+    _id:string;
+    title:string;
+    adress:any;
+    type:string;
+    floors:number;
+    onFloor:number;
+    rooms:number;
+    equiped:string;
+    quadrature:number;
+    pictures:string[];
+    price:number;
+    owner:string;
+    aproved:string;
+    reason:string;
+    date:Date;
+    sold:boolean;
+    viewed:Array<string>
+    views:number;
+}

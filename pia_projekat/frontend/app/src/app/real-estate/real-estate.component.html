@@ -1,0 +1,204 @@
+<app-menu></app-menu>
+
+<div class="container">
+  <div fxLayoutAlign="center center" fxFlexFill>
+    <mat-card class="product">
+      <div>
+        <img *ngIf="isPicture(realEstate.pictures[pictureIndex])" mat-card-image
+          src='{{"http://localhost:4000/uploads/"+realEstate.pictures[pictureIndex]}}'>
+        <video *ngIf="!isPicture(realEstate.pictures[pictureIndex])"
+          src='{{"http://localhost:4000/uploads/"+realEstate.pictures[pictureIndex]}}' controls></video>
+        <button mat-fab color="primary" (click)="moveLeft()" class="btnLeft">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <button mat-fab color="primary" (click)="moveRight()" class="btnRight">
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+      
+      <mat-card-content>
+        <span class="centerSingleComponent" *ngIf='!realEstate.sold && (user.type=="admin"||user.type=="agent"||user.username==realEstate.owner)'>
+          <input type="file" style="display: none" (change)="upload($event)" #fileInput multiple>
+          <button mat-raised-button (click)='fileInput.click()'>Change pictures</button>
+      </span>
+        <hr>
+        <div class="centerSingleComponent">
+          Real estate has been viewed : {{realEstate.views}} times
+        </div>
+        <hr>
+        <mat-grid-list cols="2" rowHeight="20px" class="script-menu">
+          <mat-grid-tile>Title :</mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'> {{realEstate.title}}</mat-grid-tile>
+
+          <mat-grid-tile *ngIf='edit'>
+            <mat-form-field>
+
+              <input matInput placeholder="First name" [(ngModel)]="titleEdit" />
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf=!edit> Adress :</mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'>{{realEstate.adress.state}}, {{realEstate.adress.city}},
+            {{realEstate.adress.street}}
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf=edit> State :</mat-grid-tile>
+          <mat-grid-tile *ngIf=edit>
+            <mat-form-field>
+
+              <input matInput placeholder="state" [(ngModel)]="stateEdit" />
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf=edit> City :</mat-grid-tile>
+          <mat-grid-tile *ngIf=edit>
+            <mat-form-field>
+
+              <input matInput placeholder="city" [(ngModel)]="cityEdit" />
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf=edit> Street :</mat-grid-tile>
+          <mat-grid-tile *ngIf=edit>
+            <mat-form-field>
+
+              <input matInput placeholder="street" [(ngModel)]="streetEdit" />
+            </mat-form-field>
+
+          </mat-grid-tile>
+          <mat-grid-tile > Type :</mat-grid-tile>
+          <mat-grid-tile *ngIf="!edit">{{realEstate.type}} </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="edit">
+            <mat-form-field appearance="fill">
+                    <select matNativeControl required [(ngModel)]="typeEdit">
+                        <option value="house">House</option>
+                        <option value="apartment">Apartment</option>
+                    </select>
+                </mat-form-field>  
+          </mat-grid-tile>
+
+          <mat-grid-tile > Number of floors :</mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'>{{realEstate.floors}} </mat-grid-tile>
+          <mat-grid-tile *ngIf='edit'>
+            <mat-form-field >
+              
+              <input matInput type="number" required placeholder="Number of square meters"
+                  [(ngModel)]="floorsEdit">
+          </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf="realEstate.type=='apartment' && !edit">On floor :</mat-grid-tile>
+          <mat-grid-tile *ngIf="realEstate.type=='apartment' && !edit">{{realEstate.onFloor}} </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="typeEdit=='apartment' && edit">On floor :</mat-grid-tile>
+          <mat-grid-tile *ngIf="typeEdit=='apartment' && edit">
+            <mat-form-field >
+              
+              <input matInput type="number" required placeholder="on floor"
+                  [(ngModel)]="onFloorEdit">
+          </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile> Number of rooms : </mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'> {{realEstate.rooms}}</mat-grid-tile>
+          <mat-grid-tile *ngIf='edit'>
+            <mat-form-field >
+              
+              <input matInput type="number" required placeholder="number of rooms"
+                  [(ngModel)]="roomsEdit">
+          </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile> Has Equipment : </mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'>{{realEstate.equiped}} </mat-grid-tile>
+          <mat-grid-tile *ngIf="edit">
+            <mat-form-field appearance="fill">
+                    <select matNativeControl required [(ngModel)]="equipedEdit">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </mat-form-field>  
+          </mat-grid-tile>
+          
+          <mat-grid-tile>Quadrature : </mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'> {{realEstate.quadrature}}</mat-grid-tile>
+          <mat-grid-tile *ngIf='edit'>
+            <mat-form-field >
+              
+              <input matInput type="number" required placeholder="quadrature"
+                  [(ngModel)]="quadratureEdit">
+          </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile> Advertising reason : </mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'>{{realEstate.reason}} </mat-grid-tile>
+          <mat-grid-tile *ngIf="edit">
+            <mat-form-field appearance="fill">
+                    <select matNativeControl required [(ngModel)]="reasonEdit">
+                        <option value="sell">sell</option>
+                        <option value="rent">rent</option>
+                    </select>
+                </mat-form-field>  
+          </mat-grid-tile>
+          <mat-grid-tile>Price : </mat-grid-tile>
+          <mat-grid-tile *ngIf='!edit'> {{realEstate.price}}</mat-grid-tile>
+          <mat-grid-tile *ngIf='edit'>
+            <mat-form-field >
+              
+              <input matInput type="number" required placeholder="price in euros"
+                  [(ngModel)]="priceEdit">
+          </mat-form-field>
+          </mat-grid-tile>
+
+
+        </mat-grid-list>
+        <mat-radio-group  [(ngModel)]="paymentMethod"
+          *ngIf="realEstate.reason=='sell' && user.type=='regular' && !realEstate.sold && user.username!=realEstate.owner" aria-label="Select an option">
+          <mat-radio-button value="cash">Cash</mat-radio-button>
+          <div class="divider"></div>
+          <mat-radio-button value="credit">Credit</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+      <div *ngIf="paymentMethod=='credit'">
+        Participation cost : {{participation}}
+
+      </div>
+      <div *ngIf="paymentMethod!='credit'">
+        <br />
+      </div>
+      <div *ngIf='msg && msg.length>0' class='err'>
+        {{msg}} </div>
+      <mat-card-actions>
+        
+          <button *ngIf="(realEstate.owner==user.username || user.type=='agent' || user.type=='admin') && !edit &&!realEstate.sold" mat-button (click)="editF()">Edit</button>
+        
+       
+          <button  *ngIf='edit' mat-button (click)="save()">Save</button>
+        
+        <div *ngIf="!realEstate.sold">
+          <div *ngIf="user.type=='agent' || user.type=='admin'">
+            <div *ngIf="realEstate.aproved=='no'">
+              <button mat-button (click)="aproveRealEstate()">Aprove request</button>
+              <button mat-button (click)="declineRealEstate()">Decline request</button>
+            </div>
+            <div *ngIf="realEstate.aproved=='yes' && isPromoted">
+
+              <button mat-button (click)="removeFromPromoted()">Remove from promoted</button>
+            </div>
+            <div *ngIf="realEstate.aproved=='yes' && !isPromoted" (click)="promoteRealEstate()">
+
+              <button mat-button>Promote</button>
+            </div>
+          </div>
+          <div *ngIf="user.type=='regular' && user.username!=realEstate.owner && !realEstate.sold">
+            <button mat-button (click)="contactOwner()">Contact owner</button>
+          </div>
+          <div *ngIf="user.type=='regular' && user.username!=realEstate.owner && realEstate.sold">
+            <button mat-button disabled>Sold</button>
+          </div>
+        </div>
+        <div *ngIf='realEstate.sold'>
+          sold
+        </div>
+        
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="backgroundPicture"fxLayoutAlign="center center" fxFlexFill >
+    
+ <mat-card class="cardDesign">
+  <div class="centerSingleComponent">
+   <h1> Create your AR account</h1>
+  </div>
+    
+      <div div class="row">
+				<div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput required [(ngModel)]="firstName">
+          </mat-form-field> 
+        </div>
+        
+        
+				 <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput required [(ngModel)]="lastName">
+          </mat-form-field> 
+        </div>
+      </div>
+        <div class="row">
+          <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Username</mat-label>
+            <input matInput required [(ngModel)]="username">
+          </mat-form-field> 
+        </div>
+        
+        
+          <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>E-Mail</mat-label>
+            <input matInput required [(ngModel)]="email">
+          </mat-form-field> 
+        </div>
+        </div>
+        <div class="row">
+          <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>City & State</mat-label>
+            <input matInput required [(ngModel)]="city">
+          </mat-form-field> 
+        </div>
+      </div>
+        <div class="row">
+				 <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput required [type]="hide ? 'password' : 'text'"[(ngModel)]="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        
+        
+				 <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Repeat Password</mat-label>
+            <input matInput required [type]="hideRepeat ? 'password' : 'text'"[(ngModel)]="passwordRepeat">
+            <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input type="file" style="display: none" (change)="upload($event)" #fileInput>
+            <button mat-raised-button (click)="fileInput.click()">Choose picture</button>
+            <div class="inline" *ngIf="pic">
+              Picture name: {{pic.name}}
+            </div>
+          </div>
+        </div>
+      <br/>
+      <br/>
+      
+      <div class="centerSingleComponent">
+        
+        <button mat-raised-button color="primary" (click)='register()'>Register</button>
+      </div> 
+        
+      <div *ngIf="!loading">
+        <br/>
+        <hr>
+        <div class="centerSingleComponent">
+          <button mat-button color="primary" (click)='login()'>Already have an account? Login</button>
+        </div>
+        <div class="centerSingleComponent">
+          <button mat-button color="primary" (click)='guest()'>Continue as a Guest</button>
+        </div>
+      </div>
+     
+      <div class="centerSingleComponent" *ngIf="loading">
+        <mat-spinner diameter="100"></mat-spinner>
+      </div>
+    </mat-card>
+  </div>

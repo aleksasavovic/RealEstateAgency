@@ -1,0 +1,77 @@
+<mat-toolbar color="primary" class="navbar">
+    <div>
+        AR Real Estate
+    </div>
+    <div *ngIf="user">
+        <div *ngIf="user.type=='regular'">
+            <button mat-button  (click)="home()">Home</button>
+            
+            <button mat-button [matMenuTriggerFor]="menu2" yPosition="below">Your real estates </button>
+            <mat-menu #menu2="matMenu">
+                <button mat-menu-item  (click)="showYourRealEstates()">Show your real estates</button>
+                <button mat-menu-item (click)="addRealEstate()">Add new real estate</button>
+            </mat-menu>
+            <button mat-button  (click)="inbox()">Inbox</button>
+            <button mat-button [matMenuTriggerFor]="personal" yPosition="below">{{user.username}}</button>
+            <mat-menu #personal="matMenu">
+                <button mat-menu-item (click)="profile()">Profile</button>
+                <button mat-menu-item (click)="logout()">Log Out</button>
+            </mat-menu>
+        </div>
+        <div *ngIf="user.type=='agent'">
+            <button mat-button  (click)="home()">Home</button>
+            
+            <button mat-button [matMenuTriggerFor]="menu2" yPosition="below">Real Estates </button>
+            <mat-menu #menu2="matMenu">
+                <button mat-menu-item  (click)="showAllRealEstates()">View All</button>
+                <button mat-menu-item (click)="showPendingRealEstates()">View Pending</button>
+                <button mat-menu-item (click)="addRealEstate()">Add new </button>
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="buys" yPosition="below">Purchases </button>
+            <mat-menu #buys="matMenu">
+                <button mat-menu-item  (click)="showDoneDeals()">Show done deals</button>
+                <button mat-menu-item (click)="showPendingDeals()">Show deals waiting for aproval</button>
+               
+            </mat-menu>
+            <button mat-button  (click)="inbox()">Inbox</button>
+            <button mat-button [matMenuTriggerFor]="personal" yPosition="below">{{user.username}}</button>
+            <mat-menu #personal="matMenu">
+                <button mat-menu-item (click)="profile()">Profile</button>
+                <button mat-menu-item (click)="logout()">Log Out</button>
+            </mat-menu>
+        </div>
+        <div *ngIf="user.type=='admin'">
+            <button mat-button  (click)="home()">Home</button>
+            
+            <button mat-button [matMenuTriggerFor]="users" yPosition="below">Users </button>
+            <mat-menu #users="matMenu">
+                <button mat-menu-item  (click)="showAllUsers()">View all users</button>
+                <button mat-menu-item (click)="showUsersWaitingForAproval()">View users waiting for aproval</button>
+                <button mat-menu-item (click)="addUser()">Add new user </button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="menu2" yPosition="below">Real Estates </button>
+            <mat-menu #menu2="matMenu">
+                <button mat-menu-item  (click)="showAllRealEstates()">View All</button>
+                <button mat-menu-item (click)="showPendingRealEstates()">View Pending</button>
+                <button mat-menu-item (click)="addRealEstate()">Add new </button>
+                <button mat-menu-item (click)="addManyRealEstates()">Add many </button>
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="buys" yPosition="below">Purchases </button>
+            <mat-menu #buys="matMenu">
+                <button mat-menu-item  (click)="showDoneDeals()">Show done deals</button>
+                <button mat-menu-item (click)="showPendingDeals()">Show deals waiting for aproval</button>
+               
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="personal" yPosition="below">{{user.username}}</button>
+            <mat-menu #personal="matMenu">
+                <button mat-menu-item (click)="profile()">Profile</button>
+                <button mat-menu-item (click)="logout()">Log Out</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div *ngIf="!user">
+        <button mat-button (click)=login()>Login</button>
+        
+    </div>
+</mat-toolbar>

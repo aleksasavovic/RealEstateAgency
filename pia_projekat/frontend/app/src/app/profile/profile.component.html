@@ -1,0 +1,81 @@
+<app-menu></app-menu>
+<div class="backgroundPicture"fxLayoutAlign="center center" fxFlexFill >
+   
+    <mat-card clas="cardDesign">
+        <mat-card-header fxLayoutAlign="center">
+            <mat-card-title>
+                {{user.username}}
+            </mat-card-title>
+        </mat-card-header>
+        
+            <img mat-card-image  src='{{"http://localhost:4000/uploads/"+user.picture}}'>
+        
+        <mat-card-content> 
+            <div *ngIf='msg' class="centerSingleComponent err">
+                {{msg}}
+            </div>  
+            <span class="centerSingleComponent">
+                <input type="file" style="display: none" (change)="changeProfilePicture($event)" #fileInput>
+                <button mat-raised-button (click)='fileInput.click()'>Change profile picture</button>
+            </span>
+            <hr>
+            <div>
+                <mat-form-field floatLabel="always" class="static-text">
+                    <input matInput [disabled]="!editFirstName" placeholder="First name" [(ngModel)]="firstName" />
+                </mat-form-field>
+                <div class="divider"></div>
+                <button mat-raised-button *ngIf="!editFirstName" (click)="changeFirstName()">Edit</button>
+                <div class="inline" *ngIf="editFirstName">
+                    <button mat-raised-button  (click)="saveFirstName()">save</button>
+                    <div class="divider"></div>
+                    <button mat-raised-button  (click)="cancelFirstName()">cancel</button>
+                </div>
+            </div>
+            <div>
+                <mat-form-field floatLabel="always" class="static-text">
+                    <input matInput [disabled]="!editLastName" placeholder="Last name" [(ngModel)]="lastName" />
+                </mat-form-field>
+                <div class="divider"></div>
+                <button mat-raised-button *ngIf="!editLastName" (click)="changeLastName()">Edit</button>
+                <div class="inline" *ngIf="editLastName">
+                    <button mat-raised-button  (click)="saveLastName()">save</button>
+                    <div class="divider"></div>
+                    <button mat-raised-button  (click)="cancelLastName()">cancel</button>
+                </div>
+            </div>
+            <div>
+                <mat-form-field floatLabel="always" class="static-text">
+                    <input matInput [disabled]="!editEmail" placeholder="E-Mail" [(ngModel)]="email" />
+                </mat-form-field>
+                <div class="divider"></div>
+                <button mat-raised-button *ngIf="!editEmail" (click)="changeEmail()">Edit</button>
+                <div class="inline" *ngIf="editEmail">
+                    <button mat-raised-button  (click)="saveEmail()">save</button>
+                    <div class="divider"></div>
+                    <button mat-raised-button  (click)="cancelEmail()">cancel</button>
+                </div>
+            </div>
+            <div>
+                <mat-form-field floatLabel="always" class="static-text">
+                    <input matInput [disabled]="!editCity" placeholder="City & State" [(ngModel)]="city" />
+                </mat-form-field>
+                <div class="divider"></div>
+                <button mat-raised-button *ngIf="!editCity" (click)="changeCity()">Edit</button>
+                <div class="inline" *ngIf="editCity">
+                    <button mat-raised-button  (click)="saveCity()">save</button>
+                    <div class="divider"></div>
+                    <button mat-raised-button  (click)="cancelCity()">cancel</button>
+                </div>
+            </div>
+            <div *ngIf='msgo' class="centerSingleComponent err">
+                {{msgo}}
+            </div>
+            <hr>
+            <div class="centerSingleComponent">
+                <button mat-button  (click)="changePassword()">Change password</button>
+            </div>
+           
+      
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,42 @@
+<app-menu></app-menu>
+<div class="container">
+    
+    <div *ngIf="realEstates" fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+            
+        <mat-card (click)="showRealEstate(realEstate)" fxLayout="column" fxFlex.md="0 1 calc(33% - 20px)" fxFlex="0 1 calc(25% - 20px)" fxFlex.sm="0 1 calc(50% - 20px)" fxFlex.xs="100" *ngFor="let realEstate of realEstatesOnPage" class="product" >
+            <img mat-card-image  *ngIf='isPicture(getPicture(realEstate))' class="picture"  src='{{"http://localhost:4000/uploads/"+getPicture(realEstate)}}'>
+            <video *ngIf="!isPicture(getPicture(realEstate))" src='{{"http://localhost:4000/uploads/"+getPicture}}'  class="video" controls></video>
+            <mat-card-title>{{realEstate.title}}</mat-card-title>
+            <mat-card-content fxFlex>
+                    
+                <mat-grid-list cols="2" rowHeight="20px" class="script-menu">
+                    <mat-grid-tile> State and City:</mat-grid-tile>
+                    <mat-grid-tile> {{realEstate.adress.state}},{{realEstate.adress.city}}</mat-grid-tile>
+                    <mat-grid-tile> Price:</mat-grid-tile>
+                    <mat-grid-tile> {{realEstate.price}}</mat-grid-tile>
+                    <mat-grid-tile> Type:</mat-grid-tile>
+                    <mat-grid-tile> {{realEstate.type}}</mat-grid-tile>
+                    <mat-grid-tile> number of rooms:</mat-grid-tile>
+                    <mat-grid-tile> {{realEstate.rooms}}</mat-grid-tile>
+                    <mat-grid-tile> Quadrature:</mat-grid-tile>
+                    <mat-grid-tile> {{realEstate.quadrature}}</mat-grid-tile>
+                    <mat-grid-tile> Sell/Rent: </mat-grid-tile>
+                    <mat-grid-tile> {{realEstate.reason}} </mat-grid-tile>
+                 
+                </mat-grid-list>
+                   
+                </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div *ngIf="realEstates && realEstates.length>0">
+        <mat-paginator #paginator
+            [length]="realEstates.length"
+            [pageSize]="8"
+            (page)="pageEvent($event)">
+        </mat-paginator>
+    </div>
+    <div *ngIf='!realEstates || realEstates.length==0' class='centerSingleComponent'>
+        <h1>There are no real estates</h1>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<app-menu></app-menu>
+<div fxLayoutAlign="center center" fxFlexFill >
+    
+    <mat-card class="cardDesign">
+     <div class="centerSingleComponent">
+      <h1> Add new user</h1>
+     </div>
+       
+         <div div class="row">
+                   <div class="col">
+             <mat-form-field class="full-width">
+               <mat-label>First Name</mat-label>
+               <input matInput required [(ngModel)]="firstName">
+             </mat-form-field> 
+           </div>
+           
+           
+                    <div class="col">
+             <mat-form-field class="full-width">
+               <mat-label>Last Name</mat-label>
+               <input matInput required [(ngModel)]="lastName">
+             </mat-form-field> 
+           </div>
+         </div>
+           <div class="row">
+             <div class="col">
+             <mat-form-field class="full-width">
+               <mat-label>Username</mat-label>
+               <input matInput required [(ngModel)]="username">
+             </mat-form-field> 
+           </div>
+           
+           
+             <div class="col">
+             <mat-form-field class="full-width">
+               <mat-label>E-Mail</mat-label>
+               <input matInput required [(ngModel)]="email">
+             </mat-form-field> 
+           </div>
+           </div>
+           <div class="row">
+             <div class="col">
+             <mat-form-field class="full-width">
+               <mat-label>City & State</mat-label>
+               <input matInput required [(ngModel)]="city">
+             </mat-form-field> 
+           </div>
+         </div>
+           <div class="row">
+                    <div class="col">
+             <mat-form-field class="full-width">
+               <mat-label>Password</mat-label>
+               <input matInput required [type]="hide ? 'password' : 'text'"[(ngModel)]="password">
+               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+               </button>
+             </mat-form-field>
+           </div>
+           
+           
+              
+           </div>
+           <div class='row'>
+           <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>User type</mat-label>
+              <select matNativeControl required [(ngModel)]="type">
+                <option value="agent">Agent</option>
+                <option value="regular">Regular</option>
+            </select>
+            </mat-form-field> 
+          </div>
+        </div>
+        
+           <div class="row">
+             <div class="col">
+               <input type="file" style="display: none" (change)="upload($event)" #fileInput>
+               <button mat-raised-button (click)="fileInput.click()">Choose picture</button>
+               <div class="inline" *ngIf="pic">
+                 Picture name: {{pic.name}}
+               </div>
+             </div>
+           </div>
+
+         <br/>
+         <br/>
+         <div  class="error centerSingleComponent"  *ngIf="msg">
+           {{msg}}
+           <br/>
+         </div>
+         <div class="centerSingleComponent">
+           
+           <button mat-raised-button color="primary" (click)='addUser()'>Add user</button>
+         </div> 
+           
+       
+      
+       </mat-card>
+     </div>

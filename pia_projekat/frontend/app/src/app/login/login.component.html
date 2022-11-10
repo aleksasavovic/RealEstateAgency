@@ -1,0 +1,48 @@
+ <div class="backgroundPicture">
+  <div class="center">
+    <div>
+      <div class ="centerSingleComponent hColor">
+        <h1> Welcome to AR Real Estate</h1>
+      </div>
+      <div class="centerSingleComponent">
+      <h3> Login Form</h3></div>
+      <mat-form-field [style.width.px]=350>
+        <mat-label>Username</mat-label>
+        <input matInput required [(ngModel)]="username">
+      </mat-form-field>
+    </div>
+    <br/>
+    <div>
+      <mat-form-field [style.width.px]=350>
+        <mat-label>Password</mat-label>
+        <input matInput required [type]="hide ? 'password' : 'text'"[(ngModel)]="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      
+    </div>
+    <br/>
+    
+    <div class="centerSingleComponent">
+      
+      <button mat-raised-button color="primary" (click)='login()'>Log in</button>
+    </div> 
+     
+    <div *ngIf="!loading">
+      <br/>
+      <div class="centerSingleComponent">
+        <button mat-button color="primary" (click)='register()'>Do not have an accont? Register</button>
+      </div>
+      <br/>
+      <hr>
+      <div class="centerSingleComponent">
+        <button mat-button color="primary" (click)='guest()'>Continue as a Guest</button>
+      </div>
+    </div>
+    
+    <div class="centerSingleComponent" *ngIf="loading">
+      <mat-spinner diameter="100"></mat-spinner>
+    </div>
+  </div>
+</div>
